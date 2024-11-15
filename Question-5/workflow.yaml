@@ -1,0 +1,43 @@
+name: Update Open PR Count
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Runs daily at midnight
+
+jobs:
+  update_pr_count:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - run: npm install axios
+      - run: |
+            const axios = require('axios');
+            const PORT_API_KEY = 'YOUR_PORT_API_KEY';
+            const PORT_BASE_URL = 'https://api.getport.io/v1';
+            const serviceId = 'YOUR_SERVICE_ID';
+
+            async function updatePRCount() {
+            const response = await axios.get('https://github.com/toluwalase09/savannah-tech/pulls', {
+                headers: {
+                Authorization: `token YOUR_GITHUB_TOKEN`
+                }
+            });
+
+            const openPRCount = response.data.length;
+
+            await axios.patch(`${PORT_BASE_URL}/blueprints/service/entities/${serviceId}`, {
+                headers: {
+                Authorization: `Bearer ${PORT_API_KEY}`
+                },
+                data: {
+                properties: {
+                    open_pr_count: openPRCount
+                }
+                }
+            });
+            }
+
+            updatePRCount();

@@ -1,0 +1,55 @@
+{
+    "identifier": "Service",
+    "title": "Service",
+    "levels": [
+      {
+        "color": "gold",
+        "title": "Gold"
+      },
+      {
+        "color": "silver",
+        "title": "Silver"
+      },
+      {
+        "color": "bronze",
+        "title": "Bronze"
+      }
+    ],
+    "rules": [
+      {
+        "identifier": "openPRCountMedium",
+        "title": "Open PR Count Medium",
+        "level": "Silver",
+        "query": {
+          "combinator": "and",
+          "conditions": [
+            {
+              "operator": ">=",
+              "property": "$team",
+              "value": 10
+            },
+            {
+              "operator": "<",
+              "property": "$team",
+              "value": 15
+            }
+          ]
+        }
+      },
+      {
+        "identifier": "openPRCountLow",
+        "title": "Open PR Count Low",
+        "level": "Bronze",
+        "query": {
+          "combinator": "and",
+          "conditions": [
+            {
+              "operator": "<",
+              "property": "$team",
+              "value": 10
+            }
+          ]
+        }
+      }
+    ]
+  }
