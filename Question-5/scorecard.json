@@ -3,6 +3,10 @@
     "title": "Service",
     "levels": [
       {
+        "color": "yellow",
+        "title": "Yellow"
+      },
+      {
         "color": "gold",
         "title": "Gold"
       },
@@ -16,6 +20,26 @@
       }
     ],
     "rules": [
+      {
+        "identifier": "openPRCountHigh",
+        "title": "Open PR Count High",
+        "level": "Silver",
+        "query": {
+          "combinator": "and",
+          "conditions": [
+            {
+              "operator": ">=",
+              "property": "$team",
+              "value": 5
+            },
+            {
+              "operator": "<",
+              "property": "$team",
+              "value": 10
+            }
+          ]
+        }
+      },
       {
         "identifier": "openPRCountMedium",
         "title": "Open PR Count Medium",
