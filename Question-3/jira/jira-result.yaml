@@ -1,0 +1,11 @@
+{
+  "Resource #1": {
+    "identifier": "TOLU",
+    "title": "tolu",
+    "blueprint": "jiraProject",
+    "properties": {
+      "url": "https://savannah-lase.atlassian.net/projects/TOLU"
+    }
+  },
+  "Resource #2": "resources[2].port.entity.mappings.properties.url: jq: error: split input and separator must be strings"
+}
