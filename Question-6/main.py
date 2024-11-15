@@ -44,8 +44,6 @@ def update_service_eol_count(blueprint, eol_count, jwt_token):
     'Authorization': jwt_token
     }
 
-    response = requests.request("GET", url, headers=headers, data=payload)
-
     payload = {
         "properties": {
             "Number of EOL packages": eol_count
@@ -53,7 +51,7 @@ def update_service_eol_count(blueprint, eol_count, jwt_token):
     }
     response = requests.request("PATCH", url, headers=headers, data=payload)
     response = requests.patch(url, headers=headers, json=payload)
-
+    print(response)
     return response
 
 
@@ -84,10 +82,9 @@ def main():
     print("Fetching correct number of EOL packages..")
     total_eol = count_eol_frameworks(blueprint,  jwt_token)
 
+    
+    update_result = update_service_eol_count(entities, total_eol, jwt_token)
 
-    identifiers = [entity["identifier"] for entity in entities]
-    update_result = update_service_eol_count(identifiers, total_eol)
-    print(f"Updated Service {identifiers['name']} with EOL count: {total_eol}")
 
 
  
