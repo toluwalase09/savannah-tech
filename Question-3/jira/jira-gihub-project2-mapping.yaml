@@ -1,0 +1,36 @@
+deleteDependentEntities: true
+createMissingRelatedEntities: true
+enableMergeEntity: true
+resources:
+  - kind: project
+    selector:
+      query: 'true'
+    port:
+      entity:
+        mappings:
+          identifier: .key
+          title: .name
+          blueprint: '"jiraProject"'
+          properties:
+            url: (.self | split("/") | .[:3] | join("/")) + "/projects/" + .key
+  - kind: issue
+    selector:
+      query: 'true'
+      jql: (statusCategory != Done) OR (created >= -1w) OR (updated >= -1w)
+    port:
+      entity:
+        mappings:
+          identifier:
+            combinator: '"and"'  # Combine multiple rules with "and"
+            rules:
+              - operator: '"="'  # Equals operator
+                property: '"jiraIssue"'  # Use the jira_component_id property
+                value: '"service'
+          blueprint: '"jiraIssue"'  # The blueprint to map to (services blueprint)
+          properties:
+            repository_url: '"https://github.com/toluwalase09/test-amplify"'
+            jira_issue_id: '"test-amplify"'
+          relations:
+            project: .fields.project.key
+            parentIssue: .fields.parent.key
+            subtasks: .fields.subtasks | map(.key)
