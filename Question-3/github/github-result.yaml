@@ -1,0 +1,13 @@
+ {
+  "Resource #1": {
+    "identifier": "Web-Dev-For-Beginners",
+    "title": "Web-Dev-For-Beginners",
+    "blueprint": "service",
+    "properties": {
+      "readme": "<README.md Content>",
+      "url": "https://github.com/toluwalase09/Web-Dev-For-Beginners",
+      "language": null
+    }
+  },
+  "Resource #2": "resources[2].port.entity.mappings.properties.assignees: jq: error: Cannot iterate over null (null)"
+}
