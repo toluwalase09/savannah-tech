@@ -1,0 +1,12 @@
+{
+    "identifier": "new-microservice",
+    "title": "MyNewMicroservice",
+    "icon": "Microservice",
+    "team": [],
+    "properties": {
+      "content": "New Framework",
+      "description": "This framework supports modern applications.",
+      "state": "active"
+    },
+    "relations": {}
+}
