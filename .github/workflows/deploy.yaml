@@ -19,7 +19,7 @@ jobs:
           operation: UPSERT
           identifier: Service
           title: Service
-          blueprint: open_pr_counts
+          blueprint: Integer
           properties: '{}'
 
       - name: Set up Node.js
