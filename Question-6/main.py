@@ -21,7 +21,7 @@ def fetch_frameworks_entities(base_url, access_token):
 
     response = requests.get( url, headers=access_token)
 
-    print(response.text)
+    # print(response.text)
     response.raise_for_status()
     return response.json()['entities']
 
@@ -39,7 +39,7 @@ def count_eol(base_url, blueprint_id, access_token):
 
     # Access the 'count' value
     count_value = json_response["count"]
-    print(count_value)
+    # print(count_value)
     return count_value
 
 
@@ -73,12 +73,12 @@ def main():
     PORT_BASE_URL = os.getenv("base_url")
 
     blueprint_id = "Integer"
-
+    eol_no = count_eol(PORT_BASE_URL, blueprint_id,  HEADERS)
 
     try:
         # Get all services and frameworks
-        services = fetch_service_entities(PORT_BASE_URL, jwt_token)
-        frameworks = fetch_frameworks_entities(PORT_BASE_URL, jwt_token)
+        services = fetch_service_entities(PORT_BASE_URL,  HEADERS)
+        frameworks = fetch_frameworks_entities(PORT_BASE_URL,  HEADERS)
 
         # Create a lookup dictionary for frameworks
         framework_state_map = {
@@ -88,8 +88,9 @@ def main():
 
         # Process each service
         for service in services:
+            print(service)
             # Get the frameworks related to this service
-            service_frameworks = service['relations']['used_framework']
+            service_frameworks = service['relations']['framework']
             
             # Count EOL frameworks
             eol_count = sum(
@@ -99,7 +100,7 @@ def main():
 
             # Update the service with the EOL count
             print(f"Updating service {service['identifier']} with EOL count: {eol_count}")
-            client.update_service_eol_count(service['identifier'], eol_count)
+            update_service_eol_count(service['identifier'], eol_count, PORT_BASE_URL,  HEADERS)
 
         print("Successfully updated all services with EOL package counts")
 
