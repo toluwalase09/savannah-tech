@@ -44,6 +44,24 @@ def fetch_frameworks_entities(base_url, headers, blueprint_id):
     response.raise_for_status()
     return response.json()['entities']
 
+def count_eol(base_url, blueprint_id, headers):
+    """Count the number of entities marked as EOL."""
+    url = f"{base_url}/v1/blueprints/{blueprint_id}/entities-count"
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()
+    return response.json().get("count", 0)
+
+def add_new_framework_to_service(entity_id, base_url, access_token, new_framework_id, blueprint_id):
+    url = f"{base_url}/v1/blueprints/{blueprint_id}/entities/{entity_id}"
+    payload = {
+        "relations": {
+            "framework": new_framework_id
+        }
+    }
+    response = requests.patch(url, headers=access_token, json=payload)
+    response.raise_for_status()  # Will raise an error if request fails
+    print(f"Service {entity_id} updated with new framework: {new_framework_id}")
+    return response
 
 def update_service_eol_count(base_url, headers, blueprint_id, entity_id, eol_count):
     """
@@ -77,32 +95,36 @@ def main():
         print("Available Blueprints:")
         for blueprint in blueprints:
             print(f"ID: {blueprint['identifier']}")
-
-        # Iterate through each blueprint and process its services and frameworks
+            blueprint_id = blueprint['identifier']
+            new_framework_id = "tes"  # Replace with the actual framework ID eol_count = count_eol(PORT_BASE_URL, HEADERS, blueprint_id)
         for blueprint in blueprints:
             blueprint_id = blueprint['identifier']
             print(f"\nProcessing Blueprint ID: {blueprint_id}")
+            
 
             try:
-                # Fetch services and frameworks for the current blueprint
+                # Get all services for the blueprint
                 services = fetch_service_entities(PORT_BASE_URL, HEADERS, blueprint_id)
                 frameworks = fetch_frameworks_entities(PORT_BASE_URL, HEADERS, blueprint_id)
-
-                # Create a set of EOL framework IDs
                 eol_framework_ids = {
                     framework['identifier'] for framework in frameworks if framework['properties'].get('state') == 'EOL'
                 }
-
-                # Update service EOL counts
+                # Process each service in the blueprint
                 for service in services:
                     service_id = service['identifier']
+                    print(f"Processing Service {service_id} ")
+                    
+                    # Check if 'framework' relation is missing and add a new framework
                     if 'relations' not in service or 'framework' not in service['relations']:
-                        print(f"Skipping Service {service_id}: Missing 'framework' relation")
-                        continue
-
-                    used_frameworks = service['relations']['framework']
-                    eol_count = sum(1 for fw in used_frameworks if fw in eol_framework_ids)
+                        print(f"Service {service_id} missing 'framework' relation, adding new framework")
+                        used_frameworks = add_new_framework_to_service(service, PORT_BASE_URL, HEADERS, new_framework_id, blueprint_id)
+                    else:
+                        used_frameworks = service['relations']['framework']
+                    eol_count = count_eol(PORT_BASE_URL, blueprint_id, HEADERS)
+                    # eol_count = sum(1 for fw in used_frameworks if fw in eol_framework_ids)
+                    print(f"Updating Service {service} with EOL count: {eol_count}")
                     update_service_eol_count(PORT_BASE_URL, HEADERS, blueprint_id, service_id, eol_count)
+  
 
             except requests.exceptions.RequestException as e:
                 print(f"Request error for Blueprint ID {blueprint_id}: {str(e)}")
@@ -111,7 +133,6 @@ def main():
             except Exception as e:
                 print(f"Unexpected error for Blueprint ID {blueprint_id}: {str(e)}")
 
-        print("Successfully updated all services with EOL package counts.")
 
     except requests.exceptions.RequestException as e:
         print(f"Request error: {str(e)}")

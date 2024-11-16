@@ -1,0 +1,29 @@
+Available Blueprints:
+ID: framework
+ID: jiraIssue
+ID: jiraProject
+ID: Integer
+ID: service
+ID: githubPullRequest
+
+Processing Blueprint ID: framework
+
+Processing Blueprint ID: jiraIssue
+
+Processing Blueprint ID: jiraProject
+Processing Service TOLU 
+Service TOLU missing 'framework' relation, adding new framework
+Request error for Blueprint ID jiraProject: 404 Client Error: Not Found for url: https://api.getport.io/v1/blueprints/jiraProject/entities/%7B'identifier':%20'TOLU',%20'title':%20'tolu',%20'icon':%20None,%20'blueprint':%20'jiraProject',%20'team':%20%5B%5D,%20'properties':%20%7B'url':%20'https://savannah-lase.atlassian.net/projects/TOLU'%7D,%20'relations':%20%7B%7D,%20'createdAt':%20'2024-11-15T20:47:51.052Z',%20'createdBy':%20'xeaxUlUqkpGQ9n5D6QlwS9OvZfTglvT7',%20'updatedAt':%20'2024-11-15T20:47:51.052Z',%20'updatedBy':%20'xeaxUlUqkpGQ9n5D6QlwS9OvZfTglvT7'%7D
+
+Processing Blueprint ID: Integer
+Processing Service new-microservice-2 
+Service new-microservice-2 missing 'framework' relation, adding new framework
+Request error for Blueprint ID Integer: 404 Client Error: Not Found for url: https://api.getport.io/v1/blueprints/Integer/entities/%7B'identifier':%20'new-microservice-2',%20'title':%20'MyNewMicroservice-2',%20'icon':%20'Microservice',%20'blueprint':%20'Integer',%20'team':%20%5B%5D,%20'properties':%20%7B%7D,%20'relations':%20%7B%7D,%20'createdAt':%20'2024-11-15T19:15:34.009Z',%20'createdBy':%20'google-oauth2%7C105246339694869363923',%20'updatedAt':%20'2024-11-15T19:15:34.009Z',%20'updatedBy':%20'google-oauth2%7C105246339694869363923',%20'scorecards':%20%7B'framework':%20%7B'rules':%20%5B%7B'identifier':%20'hasTeam',%20'status':%20'FAILURE',%20'level':%20'Bronze',%20'ruleResults':%20%5B%7B'condition':%20%7B'operator':%20'isNotEmpty',%20'property':%20'$team'%7D,%20'result':%20False%7D%5D%7D%5D,%20'level':%20'Basic'%7D,%20'Service':%20%7B'rules':%20%5B%7B'identifier':%20'openPRCountHigh',%20'status':%20'FAILURE',%20'level':%20'Silver',%20'ruleResults':%20%5B%7B'condition':%20%7B'operator':%20'%3E=',%20'property':%20'$team',%20'value':%205%7D,%20'result':%20False%7D,%20%7B'condition':%20%7B'operator':%20'%3C',%20'property':%20'$team',%20'value':%2010%7D,%20'result':%20True%7D%5D%7D,%20%7B'identifier':%20'openPRCountMedium',%20'status':%20'FAILURE',%20'level':%20'Silver',%20'ruleResults':%20%5B%7B'condition':%20%7B'operator':%20'%3E=',%20'property':%20'$team',%20'value':%2010%7D,%20'result':%20False%7D,%20%7B'condition':%20%7B'operator':%20'%3C',%20'property':%20'$team',%20'value':%2015%7D,%20'result':%20True%7D%5D%7D,%20%7B'identifier':%20'openPRCountLow',%20'status':%20'SUCCESS',%20'level':%20'Bronze',%20'ruleResults':%20%5B%7B'condition':%20%7B'operator':%20'%3C',%20'property':%20'$team',%20'value':%2010%7D,%20'result':%20True%7D%5D%7D%5D,%20'level':%20'Yellow'%7D,%20'Ownership':%20%7B'rules':%20%5B%7B'identifier':%20'hasTeam',%20'status':%20'FAILURE',%20'level':%20'Bronze',%20'ruleResults':%20%5B%7B'condition':%20%7B'operator':%20'isNotEmpty',%20'property':%20'$team'%7D,%20'result':%20False%7D%5D%7D%5D,%20'level':%20'Basic'%7D%7D,%20'scorecardsStats':%2020,%20'scorecardsRuleCount':%205%7D
+
+Processing Blueprint ID: service
+Processing Service cloud-developer 
+Updating Service {'identifier': 'cloud-developer', 'title': 'cloud-developer', 'icon': None, 'blueprint': 'service', 'team': [], 'properties': {'readme': "# cloud-developer\ncontent for Udacity's cloud developer nanodegree\n", 'url': 'https://github.com/toluwalase09/cloud-developer', 'language': None, 'slack': None, 'tier': None}, 'relations': {'framework': []}, 'createdAt': '2024-11-07T11:22:14.997Z', 'createdBy': 'Cp8PAICHIMK0XKIcuNoe9vj9FiNclf1A', 'updatedAt': '2024-11-07T11:22:14.997Z', 'updatedBy': 'Cp8PAICHIMK0XKIcuNoe9vj9FiNclf1A', 'scorecards': {'ProductionReadiness': {'rules': [{'identifier': 'hasReadme', 'status': 'SUCCESS', 'level': 'Bronze', 'ruleResults': [{'condition': {'operator': 'isNotEmpty', 'property': 'readme'}, 'result': True}]}, {'identifier': 'usesSupportedLang', 'status': 'FAILURE', 'level': 'Silver', 'ruleResults': [{'condition': {'operator': '=', 'property': 'language', 'value': 'Python'}, 'result': False}, {'condition': {'operator': '=', 'property': 'language', 'value': 'JavaScript'}, 'result': False}, {'condition': {'operator': '=', 'property': 'language', 'value': 'React'}, 'result': False}, {'condition': {'operator': '=', 'property': 'language', 'value': 'GoLang'}, 'result': False}]}, {'identifier': 'hasTeam', 'status': 'FAILURE', 'level': 'Gold', 'ruleResults': [{'condition': {'operator': 'isNotEmpty', 'property': '$team'}, 'result': False}]}], 'level': 'Bronze'}}, 'scorecardsStats': 33.333, 'scorecardsRuleCount': 3} with EOL count: 59
+Request error for Blueprint ID service: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/cloud-developer
+
+
+Processing Blueprint ID: githubPullRequest
