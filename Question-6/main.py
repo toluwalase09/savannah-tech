@@ -1,98 +1,124 @@
 import requests
+import json
+from typing import Dict, List
 from dotenv import load_dotenv
 import os
 
 
-def fetch_service_entities(base_url, headers):
-    """Fetch all service entities."""
-    url = f"{base_url}/v1/blueprints/service/entities"
+def fetch_blueprints(base_url, headers):
+    """
+    Fetches all blueprints from the Port API.
+    """
+    url = f"{base_url}/v1/blueprints"
     response = requests.get(url, headers=headers)
     response.raise_for_status()
-    return response.json().get('entities', [])
+    return response.json()['blueprints'] 
 
 
-def fetch_frameworks_entities(base_url, headers):
-    """Fetch all framework entities."""
-    url = f"{base_url}/v1/blueprints/framework/entities"
-    response = requests.get(url, headers=headers)
-    response.raise_for_status()
-    return response.json().get('entities', [])
-
-
-def count_eol(base_url, blueprint_id, headers):
-    """Count the number of entities marked as EOL."""
-    url = f"{base_url}/v1/blueprints/{blueprint_id}/entities-count"
-    response = requests.get(url, headers=headers)
-    response.raise_for_status()
-    return response.json().get("count", 0)
-
-
-def update_service_eol_count(service_id, eol_count, base_url, headers):
-    """Update a service entity with the EOL count."""
-    url = f"{base_url}/v1/blueprints/service/entities/{service_id}"
-    payload = {"properties": {"Number of EOL packages": eol_count}}
-    # Log the request details
-    print(f"PATCH Request URL: {url}")
-    print(f"Payload: {payload}")
-
+def fetch_service_entities(base_url, headers, blueprint_id):
+    """
+    Fetches all service entities for a given blueprint.
+    """
+    url = f"{base_url}/v1/blueprints/{blueprint_id}/entities"
     try:
-        response = requests.patch(url, headers=headers, json=payload)
+        response = requests.get(url, headers=headers)
         response.raise_for_status()
-        print(f"Updated Service {service_id}: EOL count set to {eol_count}")
-    except requests.exceptions.RequestException as req_err:
-        print(f"Failed to update Service {service_id}: {req_err}")
-        print(f"Skipping Service {service_id}...")
+        return response.json()['entities']
+    except requests.exceptions.HTTPError as err:
+        if err.response.status_code == 422:
+            print(f"422 Error for Blueprint ID {blueprint_id}: {err.response.text}")
+        else:
+            print(f"HTTPError for Blueprint ID {blueprint_id}: {err.response.status_code} - {err.response.text}")
+        raise  # Re-raise the exception to halt further execution
+    except requests.exceptions.RequestException as e:
+        print(f"RequestException for Blueprint ID {blueprint_id}: {str(e)}")
+        raise
+
+
+def fetch_frameworks_entities(base_url, headers, blueprint_id):
+    """
+    Fetches all framework entities for a given blueprint.
+    """
+    url = f"{base_url}/v1/blueprints/{blueprint_id}/entities"
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()
+    return response.json()['entities']
+
+
+def update_service_eol_count(base_url, headers, blueprint_id, entity_id, eol_count):
+    """
+    Updates the EOL count for a specific service entity in a given blueprint.
+    """
+    url = f"{base_url}/v1/blueprints/{blueprint_id}/entities/{entity_id}"
+    payload = {
+        "properties": {
+            "Number of EOL packages": eol_count
+        }
+    }
+    response = requests.patch(url, headers=headers, json=payload)
+    response.raise_for_status()
+    print(f"Updated {entity_id} with EOL count: {eol_count}")
+    return response
+
 
 def main():
     load_dotenv()
 
     jwt_token = os.getenv("jwt_token")
-    # Headers for Port API requests
+    PORT_BASE_URL = os.getenv("base_url")
     HEADERS = {
         'Authorization': jwt_token,
         'Content-Type': 'application/json'
     }
-    PORT_BASE_URL = os.getenv("base_url")
 
-    blueprint_id = "Integer"
-    eol_no = count_eol(PORT_BASE_URL, blueprint_id, HEADERS)
-    print(f"Total EOL entities: {eol_no}")
+    try:
+        # Fetch all blueprints
+        blueprints = fetch_blueprints(PORT_BASE_URL, HEADERS)
+        print("Available Blueprints:")
+        for blueprint in blueprints:
+            print(f"ID: {blueprint['identifier']}")
 
-    # Get all services and frameworks
-    services = fetch_service_entities(PORT_BASE_URL, HEADERS)
-    frameworks = fetch_frameworks_entities(PORT_BASE_URL, HEADERS)
+        # Iterate through each blueprint and process its services and frameworks
+        for blueprint in blueprints:
+            blueprint_id = blueprint['identifier']
+            print(f"\nProcessing Blueprint ID: {blueprint_id}")
 
-    # Create a set of EOL framework IDs for efficient lookup
-    eol_framework_ids = {
-        framework['identifier']
-        for framework in frameworks
-        if framework['properties']['state'] == 'EOL'
-    }
+            try:
+                # Fetch services and frameworks for the current blueprint
+                services = fetch_service_entities(PORT_BASE_URL, HEADERS, blueprint_id)
+                frameworks = fetch_frameworks_entities(PORT_BASE_URL, HEADERS, blueprint_id)
 
-    # Update service EOL counts
-    for service in services:
-        service_id = service['identifier']
-        try:
-            # Ensure 'relations' and 'framework' keys exist
-            if 'relations' not in service or 'framework' not in service['relations']:
-                print(f"Skipping Service {service_id}: Missing 'framework' relation")
-                continue
+                # Create a set of EOL framework IDs
+                eol_framework_ids = {
+                    framework['identifier'] for framework in frameworks if framework['properties'].get('state') == 'EOL'
+                }
 
-            # Count EOL frameworks related to the service
-            used_frameworks = service['relations']['framework']
+                # Update service EOL counts
+                for service in services:
+                    service_id = service['identifier']
+                    if 'relations' not in service or 'framework' not in service['relations']:
+                        print(f"Skipping Service {service_id}: Missing 'framework' relation")
+                        continue
 
+                    used_frameworks = service['relations']['framework']
+                    eol_count = sum(1 for fw in used_frameworks if fw in eol_framework_ids)
+                    update_service_eol_count(PORT_BASE_URL, HEADERS, blueprint_id, service_id, eol_count)
 
-            # Update the service with the EOL count
-            update_service_eol_count(service_id, eol_no, PORT_BASE_URL, HEADERS)
-            print(f"Updated Service {service_id} with EOL count: {eol_no}")
-        except KeyError as key_err:
-            print(f"Data structure error for Service {service_id}: {key_err}")
-            continue
-        except Exception as ex:
-            print(f"Unexpected error for Service {service_id}: {ex}")
-            continue
+            except requests.exceptions.RequestException as e:
+                print(f"Request error for Blueprint ID {blueprint_id}: {str(e)}")
+            except KeyError as e:
+                print(f"Data structure error in Blueprint ID {blueprint_id}: {str(e)}")
+            except Exception as e:
+                print(f"Unexpected error for Blueprint ID {blueprint_id}: {str(e)}")
 
-    print("Successfully updated all services with EOL package counts")
+        print("Successfully updated all services with EOL package counts.")
+
+    except requests.exceptions.RequestException as e:
+        print(f"Request error: {str(e)}")
+    except KeyError as e:
+        print(f"Data structure error: {str(e)}")
+    except Exception as e:
+        print(f"Unexpected error: {str(e)}")
 
 
 if __name__ == "__main__":

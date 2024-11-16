@@ -1,0 +1,25 @@
+Available Blueprints:
+ID: framework
+ID: jiraIssue
+ID: jiraProject
+ID: Integer
+ID: service
+ID: githubPullRequest
+
+Processing Blueprint ID: framework
+
+Processing Blueprint ID: jiraIssue
+
+Processing Blueprint ID: jiraProject
+Skipping Service TOLU: Missing 'framework' relation
+
+Processing Blueprint ID: Integer
+Skipping Service new-microservice-2: Missing 'framework' relation
+Skipping Service Service: Missing 'framework' relation
+Skipping Service string: Missing 'framework' relation
+
+Processing Blueprint ID: service
+Request error for Blueprint ID service: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/cloud-developer
+
+Processing Blueprint ID: githubPullRequest
+Successfully updated all services with EOL package counts.
