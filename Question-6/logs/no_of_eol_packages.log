@@ -1,0 +1,297 @@
+Total EOL entities: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/cloud-developer
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service cloud-developer: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/cloud-developer
+Skipping Service cloud-developer...
+Updated Service cloud-developer with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/udacity
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service udacity: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/udacity
+Skipping Service udacity...
+Updated Service udacity with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/udagram-microservice-project-main
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service udagram-microservice-project-main: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/udagram-microservice-project-main
+Skipping Service udagram-microservice-project-main...
+Updated Service udagram-microservice-project-main with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/results
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service results: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/results
+Skipping Service results...
+Updated Service results with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/tutoringApp
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service tutoringApp: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/tutoringApp
+Skipping Service tutoringApp...
+Updated Service tutoringApp with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/developer-roadmap
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service developer-roadmap: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/developer-roadmap
+Skipping Service developer-roadmap...
+Updated Service developer-roadmap with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/udacity-infracture-project
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service udacity-infracture-project: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/udacity-infracture-project
+Skipping Service udacity-infracture-project...
+Updated Service udacity-infracture-project with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/30-Days-Of-JavaScript
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service 30-Days-Of-JavaScript: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/30-Days-Of-JavaScript
+Skipping Service 30-Days-Of-JavaScript...
+Updated Service 30-Days-Of-JavaScript with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/BenEaterVHDL
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service BenEaterVHDL: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/BenEaterVHDL
+Skipping Service BenEaterVHDL...
+Updated Service BenEaterVHDL with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/learn-to-cloud
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service learn-to-cloud: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/learn-to-cloud
+Skipping Service learn-to-cloud...
+Updated Service learn-to-cloud with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/crud_app
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service crud_app: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/crud_app
+Skipping Service crud_app...
+Updated Service crud_app with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/simple-node-travis
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service simple-node-travis: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/simple-node-travis
+Skipping Service simple-node-travis...
+Updated Service simple-node-travis with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/bookstore
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service bookstore: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/bookstore
+Skipping Service bookstore...
+Updated Service bookstore with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/docker-flask-locust
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service docker-flask-locust: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/docker-flask-locust
+Skipping Service docker-flask-locust...
+Updated Service docker-flask-locust with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/prime_factor
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service prime_factor: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/prime_factor
+Skipping Service prime_factor...
+Updated Service prime_factor with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/nd9991-c3-hello-world-exercise-solution
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service nd9991-c3-hello-world-exercise-solution: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/nd9991-c3-hello-world-exercise-solution
+Skipping Service nd9991-c3-hello-world-exercise-solution...
+Updated Service nd9991-c3-hello-world-exercise-solution with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/circleci-demo-javascript-express
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service circleci-demo-javascript-express: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/circleci-demo-javascript-express
+Skipping Service circleci-demo-javascript-express...
+Updated Service circleci-demo-javascript-express with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/my-CICD-app
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service my-CICD-app: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/my-CICD-app
+Skipping Service my-CICD-app...
+Updated Service my-CICD-app with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/cdond-c3-projectstarter
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service cdond-c3-projectstarter: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/cdond-c3-projectstarter
+Skipping Service cdond-c3-projectstarter...
+Updated Service cdond-c3-projectstarter with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/Ansible_lab_1
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service Ansible_lab_1: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/Ansible_lab_1
+Skipping Service Ansible_lab_1...
+Updated Service Ansible_lab_1 with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/circleciproj
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service circleciproj: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/circleciproj
+Skipping Service circleciproj...
+Updated Service circleciproj with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/DevOps_Microservices
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service DevOps_Microservices: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/DevOps_Microservices
+Skipping Service DevOps_Microservices...
+Updated Service DevOps_Microservices with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/devops-master-class
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service devops-master-class: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/devops-master-class
+Skipping Service devops-master-class...
+Updated Service devops-master-class with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/90DaysOfDevOps
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service 90DaysOfDevOps: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/90DaysOfDevOps
+Skipping Service 90DaysOfDevOps...
+Updated Service 90DaysOfDevOps with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/DevOps-Lifecycle
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service DevOps-Lifecycle: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/DevOps-Lifecycle
+Skipping Service DevOps-Lifecycle...
+Updated Service DevOps-Lifecycle with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/Scalable-and-Secure-Web-Application-Architecture
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service Scalable-and-Secure-Web-Application-Architecture: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/Scalable-and-Secure-Web-Application-Architecture
+Skipping Service Scalable-and-Secure-Web-Application-Architecture...
+Updated Service Scalable-and-Secure-Web-Application-Architecture with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/CFN-GUARD-naming-convention
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service CFN-GUARD-naming-convention: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/CFN-GUARD-naming-convention
+Skipping Service CFN-GUARD-naming-convention...
+Updated Service CFN-GUARD-naming-convention with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/udacityproject4
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service udacityproject4: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/udacityproject4
+Skipping Service udacityproject4...
+Updated Service udacityproject4 with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/devops-intern-test
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service devops-intern-test: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/devops-intern-test
+Skipping Service devops-intern-test...
+Updated Service devops-intern-test with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/terraform-aws-foundation
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service terraform-aws-foundation: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/terraform-aws-foundation
+Skipping Service terraform-aws-foundation...
+Updated Service terraform-aws-foundation with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/robot-shop
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service robot-shop: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/robot-shop
+Skipping Service robot-shop...
+Updated Service robot-shop with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/Ansible_Assignment
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service Ansible_Assignment: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/Ansible_Assignment
+Skipping Service Ansible_Assignment...
+Updated Service Ansible_Assignment with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/Hands-On-Infrastructure-Monitoring-with-Prometheus
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service Hands-On-Infrastructure-Monitoring-with-Prometheus: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/Hands-On-Infrastructure-Monitoring-with-Prometheus
+Skipping Service Hands-On-Infrastructure-Monitoring-with-Prometheus...
+Updated Service Hands-On-Infrastructure-Monitoring-with-Prometheus with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/DevOps-projects
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service DevOps-projects: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/DevOps-projects
+Skipping Service DevOps-projects...
+Updated Service DevOps-projects with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/nd9990-c3-microservices-exercises
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service nd9990-c3-microservices-exercises: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/nd9990-c3-microservices-exercises
+Skipping Service nd9990-c3-microservices-exercises...
+Updated Service nd9990-c3-microservices-exercises with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/jenkins-terraform
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service jenkins-terraform: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/jenkins-terraform
+Skipping Service jenkins-terraform...
+Updated Service jenkins-terraform with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/cfn-pip
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service cfn-pip: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/cfn-pip
+Skipping Service cfn-pip...
+Updated Service cfn-pip with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/Free-Certifications
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service Free-Certifications: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/Free-Certifications
+Skipping Service Free-Certifications...
+Updated Service Free-Certifications with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/alx-system_engineering-devops
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service alx-system_engineering-devops: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/alx-system_engineering-devops
+Skipping Service alx-system_engineering-devops...
+Updated Service alx-system_engineering-devops with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/Web-Dev-For-Beginners
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service Web-Dev-For-Beginners: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/Web-Dev-For-Beginners
+Skipping Service Web-Dev-For-Beginners...
+Updated Service Web-Dev-For-Beginners with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/terraform-jenkinss
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service terraform-jenkinss: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/terraform-jenkinss
+Skipping Service terraform-jenkinss...
+Updated Service terraform-jenkinss with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/helm-chart
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service helm-chart: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/helm-chart
+Skipping Service helm-chart...
+Updated Service helm-chart with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/realworld
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service realworld: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/realworld
+Skipping Service realworld...
+Updated Service realworld with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/cloudboosta-intern-tesr
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service cloudboosta-intern-tesr: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/cloudboosta-intern-tesr
+Skipping Service cloudboosta-intern-tesr...
+Updated Service cloudboosta-intern-tesr with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/aws-ec2-workflow
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service aws-ec2-workflow: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/aws-ec2-workflow
+Skipping Service aws-ec2-workflow...
+Updated Service aws-ec2-workflow with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/udacity_proj4
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service udacity_proj4: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/udacity_proj4
+Skipping Service udacity_proj4...
+Updated Service udacity_proj4 with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/python-CI-CD-with-Jenkins-and-ArgoCD
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service python-CI-CD-with-Jenkins-and-ArgoCD: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/python-CI-CD-with-Jenkins-and-ArgoCD
+Skipping Service python-CI-CD-with-Jenkins-and-ArgoCD...
+Updated Service python-CI-CD-with-Jenkins-and-ArgoCD with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/aws-serverless-webapp-workshop
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service aws-serverless-webapp-workshop: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/aws-serverless-webapp-workshop
+Skipping Service aws-serverless-webapp-workshop...
+Updated Service aws-serverless-webapp-workshop with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/microservices-demo
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service microservices-demo: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/microservices-demo
+Skipping Service microservices-demo...
+Updated Service microservices-demo with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/rps-ant
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service rps-ant: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/rps-ant
+Skipping Service rps-ant...
+Updated Service rps-ant with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/k8s-microservice
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service k8s-microservice: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/k8s-microservice
+Skipping Service k8s-microservice...
+Updated Service k8s-microservice with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/ci-demo
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service ci-demo: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/ci-demo
+Skipping Service ci-demo...
+Updated Service ci-demo with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/docker-k8s-training
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service docker-k8s-training: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/docker-k8s-training
+Skipping Service docker-k8s-training...
+Updated Service docker-k8s-training with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/test-amplify
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service test-amplify: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/test-amplify
+Skipping Service test-amplify...
+Updated Service test-amplify with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/getmida.github.io
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service getmida.github.io: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/getmida.github.io
+Skipping Service getmida.github.io...
+Updated Service getmida.github.io with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/aws-sap-code
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service aws-sap-code: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/aws-sap-code
+Skipping Service aws-sap-code...
+Updated Service aws-sap-code with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/kubernetes-bootcamp
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service kubernetes-bootcamp: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/kubernetes-bootcamp
+Skipping Service kubernetes-bootcamp...
+Updated Service kubernetes-bootcamp with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/Biottendance
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service Biottendance: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/Biottendance
+Skipping Service Biottendance...
+Updated Service Biottendance with EOL count: 3
+PATCH Request URL: https://api.getport.io/v1/blueprints/service/entities/savannah-tech
+Payload: {'properties': {'Number of EOL packages': 3}}
+Failed to update Service savannah-tech: 422 Client Error: Unprocessable Entity for url: https://api.getport.io/v1/blueprints/service/entities/savannah-tech
+Skipping Service savannah-tech...
+Updated Service savannah-tech with EOL count: 3
+Successfully updated all services with EOL package counts

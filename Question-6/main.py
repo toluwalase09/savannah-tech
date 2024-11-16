@@ -1,66 +1,48 @@
 import requests
-import json
-from typing import Dict, List
 from dotenv import load_dotenv
 import os
 
 
-
-
-def fetch_service_entities(base_url, access_token):
+def fetch_service_entities(base_url, headers):
+    """Fetch all service entities."""
     url = f"{base_url}/v1/blueprints/service/entities"
-
-    response = requests.get( url, headers=access_token)
-
-    # print(response.text)
+    response = requests.get(url, headers=headers)
     response.raise_for_status()
-    return response.json()['entities']
+    return response.json().get('entities', [])
 
-def fetch_frameworks_entities(base_url, access_token):
+
+def fetch_frameworks_entities(base_url, headers):
+    """Fetch all framework entities."""
     url = f"{base_url}/v1/blueprints/framework/entities"
-
-    response = requests.get( url, headers=access_token)
-
-    # print(response.text)
+    response = requests.get(url, headers=headers)
     response.raise_for_status()
-    return response.json()['entities']
+    return response.json().get('entities', [])
 
-def count_eol(base_url, blueprint_id, access_token):
+
+def count_eol(base_url, blueprint_id, headers):
+    """Count the number of entities marked as EOL."""
     url = f"{base_url}/v1/blueprints/{blueprint_id}/entities-count"
-  
-    # Perform the GET request
-    response = requests.get(url, headers=access_token)
-
-    # Raise an exception for any HTTP error
+    response = requests.get(url, headers=headers)
     response.raise_for_status()
-
-    # Parse the JSON response directly
-    json_response = response.json()
-
-    # Access the 'count' value
-    count_value = json_response["count"]
-    # print(count_value)
-    return count_value
+    return response.json().get("count", 0)
 
 
-def update_service_eol_count(service_id, eol_count, base_url, access_token):
+def update_service_eol_count(service_id, eol_count, base_url, headers):
+    """Update a service entity with the EOL count."""
     url = f"{base_url}/v1/blueprints/service/entities/{service_id}"
-    payload = {
-        "properties": {
-            "Number of EOL packages": eol_count
-        }
-    }
-    response = requests.patch(url, headers=access_token, json=payload)
-    response.raise_for_status()
-    print(response)
-    return response
+    payload = {"properties": {"Number of EOL packages": eol_count}}
+    # Log the request details
+    print(f"PATCH Request URL: {url}")
+    print(f"Payload: {payload}")
 
+    try:
+        response = requests.patch(url, headers=headers, json=payload)
+        response.raise_for_status()
+        print(f"Updated Service {service_id}: EOL count set to {eol_count}")
+    except requests.exceptions.RequestException as req_err:
+        print(f"Failed to update Service {service_id}: {req_err}")
+        print(f"Skipping Service {service_id}...")
 
-
-
-
-
-# Main function
 def main():
     load_dotenv()
 
@@ -73,46 +55,45 @@ def main():
     PORT_BASE_URL = os.getenv("base_url")
 
     blueprint_id = "Integer"
-    eol_no = count_eol(PORT_BASE_URL, blueprint_id,  HEADERS)
+    eol_no = count_eol(PORT_BASE_URL, blueprint_id, HEADERS)
+    print(f"Total EOL entities: {eol_no}")
 
-    try:
-        # Get all services and frameworks
-        services = fetch_service_entities(PORT_BASE_URL,  HEADERS)
-        frameworks = fetch_frameworks_entities(PORT_BASE_URL,  HEADERS)
+    # Get all services and frameworks
+    services = fetch_service_entities(PORT_BASE_URL, HEADERS)
+    frameworks = fetch_frameworks_entities(PORT_BASE_URL, HEADERS)
 
-        # Create a lookup dictionary for frameworks
-        framework_state_map = {
-            framework['identifier']: framework['properties']['state']
-            for framework in frameworks
-        }
+    # Create a set of EOL framework IDs for efficient lookup
+    eol_framework_ids = {
+        framework['identifier']
+        for framework in frameworks
+        if framework['properties']['state'] == 'EOL'
+    }
 
-        # Process each service
-        for service in services:
-            print(service)
-            # Get the frameworks related to this service
-            service_frameworks = service['relations']['framework']
-            
-            # Count EOL frameworks
-            eol_count = sum(
-                1 for framework_id in service_frameworks
-                if framework_state_map.get(framework_id) == 'EOL'
-            )
+    # Update service EOL counts
+    for service in services:
+        service_id = service['identifier']
+        try:
+            # Ensure 'relations' and 'framework' keys exist
+            if 'relations' not in service or 'framework' not in service['relations']:
+                print(f"Skipping Service {service_id}: Missing 'framework' relation")
+                continue
+
+            # Count EOL frameworks related to the service
+            used_frameworks = service['relations']['framework']
+
 
             # Update the service with the EOL count
-            print(f"Updating service {service['identifier']} with EOL count: {eol_count}")
-            update_service_eol_count(service['identifier'], eol_count, PORT_BASE_URL,  HEADERS)
+            update_service_eol_count(service_id, eol_no, PORT_BASE_URL, HEADERS)
+            print(f"Updated Service {service_id} with EOL count: {eol_no}")
+        except KeyError as key_err:
+            print(f"Data structure error for Service {service_id}: {key_err}")
+            continue
+        except Exception as ex:
+            print(f"Unexpected error for Service {service_id}: {ex}")
+            continue
 
-        print("Successfully updated all services with EOL package counts")
+    print("Successfully updated all services with EOL package counts")
 
-    except requests.exceptions.RequestException as e:
-        print(f"Error occurred while communicating with Port API: {str(e)}")
-    except KeyError as e:
-        print(f"Error accessing data structure: {str(e)}")
-    except Exception as e:
-        print(f"Unexpected error occurred: {str(e)}")
-
-   
 
 if __name__ == "__main__":
     main()
-
