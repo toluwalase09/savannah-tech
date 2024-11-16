@@ -77,7 +77,7 @@ def main():
 
     try:
         # Get all services and frameworks
-        services = fetch_service_entities(PORT_BASE_URL, access_token)
+        services = fetch_service_entities(PORT_BASE_URL, jwt_token)
         frameworks = client.get_frameworks()
 
         # Create a lookup dictionary for frameworks
