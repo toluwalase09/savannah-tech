@@ -78,7 +78,7 @@ def main():
     try:
         # Get all services and frameworks
         services = fetch_service_entities(PORT_BASE_URL, jwt_token)
-        frameworks = client.get_frameworks()
+        frameworks = fetch_frameworks_entities(PORT_BASE_URL, jwt_token)
 
         # Create a lookup dictionary for frameworks
         framework_state_map = {
