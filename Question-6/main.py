@@ -1,29 +1,35 @@
 import requests
 import json
+from typing import Dict, List
+from dotenv import load_dotenv
+import os
 
 
-def fetch_entities(blueprint, payload, jwt_token):
-    url = f"https://api.getport.io/v1/blueprints/{blueprint}/entities"
 
-    headers = {
-    'Authorization': jwt_token
-    }
 
-    response = requests.request("GET", url, headers=headers, data=payload)
+def fetch_service_entities(base_url, access_token):
+    url = f"{base_url}/v1/blueprints/service/entities"
+
+    response = requests.get( url, headers=access_token)
+
+    # print(response.text)
+    response.raise_for_status()
+    return response.json()['entities']
+
+def fetch_frameworks_entities(base_url, access_token):
+    url = f"{base_url}/v1/blueprints/framework/entities"
+
+    response = requests.get( url, headers=access_token)
 
     print(response.text)
-    json_response = response.json()
+    response.raise_for_status()
+    return response.json()['entities']
 
-    return json_response
-
-def count_eol_frameworks(blueprint,jwt_token):
-    url = f"https://api.getport.io/v1/blueprints/{blueprint}/entities-count"
-    headers = {
-        'Authorization': jwt_token
-    }
-
+def count_eol(base_url, blueprint_id, access_token):
+    url = f"{base_url}/v1/blueprints/{blueprint_id}/entities-count"
+  
     # Perform the GET request
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=access_token)
 
     # Raise an exception for any HTTP error
     response.raise_for_status()
@@ -36,21 +42,16 @@ def count_eol_frameworks(blueprint,jwt_token):
     print(count_value)
     return count_value
 
-def update_service_eol_count(blueprint, eol_count, jwt_token):
-    url = f"https://api.getport.io/v1/blueprints/{blueprint}/entities/:entity_identifier"
 
-    headers = {
-    'Content-Type': 'application/json',
-    'Authorization': jwt_token
-    }
-
+def update_service_eol_count(service_id, eol_count, base_url, access_token):
+    url = f"{base_url}/v1/blueprints/service/entities/{service_id}"
     payload = {
         "properties": {
             "Number of EOL packages": eol_count
         }
     }
-    response = requests.request("PATCH", url, headers=headers, data=payload)
-    response = requests.patch(url, headers=headers, json=payload)
+    response = requests.patch(url, headers=access_token, json=payload)
+    response.raise_for_status()
     print(response)
     return response
 
@@ -61,33 +62,54 @@ def update_service_eol_count(blueprint, eol_count, jwt_token):
 
 # Main function
 def main():
-    jwt_token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmdJZCI6Im9yZ19RS1BVMHJxaW5iVWppeXk2IiwiaXNzIjoiaHR0cHM6Ly9hcGkuZ2V0cG9ydC5pbyIsImlzTWFjaGluZSI6ZmFsc2UsInBlcnNvbmFsVG9rZW4iOnRydWUsInN1YiI6Imdvb2dsZS1vYXV0aDJ8MTA1MjQ2MzM5Njk0ODY5MzYzOTIzIiwicG9ydF91c2VyX2lkIjoiZ29vZ2xlLW9hdXRoMnwxMDUyNDYzMzk2OTQ4NjkzNjM5MjMiLCJqdGkiOiI3MmY2ODcwNi0yZGNmLTQ1MjktYmEyMi1iMTAwZDhjZTQ3OTYiLCJpYXQiOjE3MzE2OTUwNjAsImV4cCI6MTczMTcwNTg2MH0.o5MnyKuYXEdqEZ5d9FXjic3-GBqZlIWzlqmX0GYpyHE"
+    load_dotenv()
 
-    payload = {
-        "identifier": "new-microservice",
-        "title": "MyNewMicroservice",
-        "icon": "Microservice",
-        "team": [],
-        "properties": {
-        "content": "New Framework",
-        "description": "This framework supports modern applications.",
-        "state": "active"
-        },
-        "relations": {}
+    jwt_token = os.getenv("jwt_token")
+    # Headers for Port API requests
+    HEADERS = {
+        'Authorization': jwt_token,
+        'Content-Type': 'application/json'
     }
-    blueprint = "Integer"
+    PORT_BASE_URL = os.getenv("base_url")
 
-    print("Fetching entities..")
-    entities = fetch_entities(blueprint, payload, jwt_token)
-    print("Fetching correct number of EOL packages..")
-    total_eol = count_eol_frameworks(blueprint,  jwt_token)
-
-    
-    update_result = update_service_eol_count(entities, total_eol, jwt_token)
+    blueprint_id = "Integer"
 
 
+    try:
+        # Get all services and frameworks
+        services = fetch_service_entities(PORT_BASE_URL, access_token)
+        frameworks = client.get_frameworks()
 
- 
+        # Create a lookup dictionary for frameworks
+        framework_state_map = {
+            framework['identifier']: framework['properties']['state']
+            for framework in frameworks
+        }
+
+        # Process each service
+        for service in services:
+            # Get the frameworks related to this service
+            service_frameworks = service['relations']['used_framework']
+            
+            # Count EOL frameworks
+            eol_count = sum(
+                1 for framework_id in service_frameworks
+                if framework_state_map.get(framework_id) == 'EOL'
+            )
+
+            # Update the service with the EOL count
+            print(f"Updating service {service['identifier']} with EOL count: {eol_count}")
+            client.update_service_eol_count(service['identifier'], eol_count)
+
+        print("Successfully updated all services with EOL package counts")
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error occurred while communicating with Port API: {str(e)}")
+    except KeyError as e:
+        print(f"Error accessing data structure: {str(e)}")
+    except Exception as e:
+        print(f"Unexpected error occurred: {str(e)}")
+
    
 
 if __name__ == "__main__":
