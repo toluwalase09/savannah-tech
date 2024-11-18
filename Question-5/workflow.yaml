@@ -11,6 +11,17 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
+      - uses: port-labs/port-github-action@v1
+        with:
+          clientId: ${{ secrets.PORT_CLIENT_ID }}
+          clientSecret: ${{ secrets.PORT_CLIENT_SECRET }}
+          baseUrl: https://api.getport.io
+          operation: UPSERT
+          identifier: Service
+          title: Service
+          blueprint: Integer
+          properties: '{}'
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
@@ -19,14 +30,35 @@ jobs:
       - name: Install Axios
         run: npm install axios
 
-          
-      - uses: port-labs/port-github-action@v1
-        with:
-          clientId: ${{ secrets.PORT_CLIENT_ID }}
-          clientSecret: ${{ secrets.PORT_CLIENT_SECRET }}
-          baseUrl: https://api.getport.io
-          operation: UPSERT
-          identifier: some_identifier
-          title: Some Title
-          blueprint: open_pr_count
-          properties: '{}'
+      - name: Update Port Entity
+        env:
+          PORT_API_URL: 'https://api.getport.io/v1'
+          PORT_API_TOKEN: ${{ secrets.PORT_API_TOKEN }}
+          ENTITY_ID: ${{ secrets.ENTITY_ID }}
+        run: |
+          echo "Running update script..."
+          node <<EOF
+          const axios = require('axios');
+
+          const PORT_API_URL = process.env.PORT_API_URL;
+          const PORT_API_TOKEN = process.env.PORT_API_TOKEN;
+          const ENTITY_ID = process.env.ENTITY_ID;
+
+          const config = {
+            headers: {
+              'Authorization': \`Bearer \${PORT_API_TOKEN}\`
+            }
+          };
+
+          axios.patch(\`\${PORT_API_URL}/blueprints/service/entities/\${ENTITY_ID}\`, {
+            data: {
+              // Define your entity update payload here
+            }
+          }, config)
+          .then(response => {
+            console.log('Entity updated successfully:', response.data);
+          })
+          .catch(error => {
+            console.error('Error updating entity:', error.message);
+          });
+          EOF
