@@ -20,9 +20,5 @@ jobs:
           identifier: Service
           title: Service
           blueprint: Integer
-          properties: ' {
-              "content": "New Framework",
-              "description": "This framework supports modern applications.",
-              "state": "active",
-            }'
+          properties:  '{}'
           relations: '{}'
