@@ -33,7 +33,7 @@ jobs:
           clientId: ${{ secrets.PORT_CLIENT_ID }}
           clientSecret: ${{ secrets.PORT_CLIENT_SECRET }}
           operation: UPSERT
-          identifier: framework
+          identifier: Service
           title: Service
           blueprint: framework
           properties: |
