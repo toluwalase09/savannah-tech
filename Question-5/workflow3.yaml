@@ -1,0 +1,47 @@
+name: PR Count and Update Port
+on:
+  schedule:
+    - cron: "0 */6 * * *" # Runs every 6 hours
+  workflow_dispatch: # Allows manual triggering of the workflow
+
+jobs:
+  update-pr-count:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Step 2: Install jq
+      - name: Install jq
+        run: sudo apt-get install -y jq
+
+      # Step 3: Get PR count
+      - name: Get PR count
+        id: get-pr-count
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Use GitHub-provided token
+        run: |
+          pr_count=$(gh pr list --json number | jq '. | length')
+          echo "PR Count: $pr_count"
+          echo "pr_count=$pr_count" >> $GITHUB_ENV
+          echo "::set-output name=pr_count::$pr_count"
+
+      # Step 4: Use PR count
+      - name: Log PR count
+        run: echo "Open PR count: ${{ env.pr_count }}"
+
+      # Step 5: Update Port entity
+      - name: Update Port entity
+        uses: port-labs/port-github-action@v1
+        with:
+          client_id: ${{ secrets.PORT_CLIENT_ID }}
+          client_secret: ${{ secrets.PORT_CLIENT_SECRET }}
+          operation: "UPSERT"
+          identifier: "your-entity-identifier" # Replace with the actual identifier
+          title: "Repository PR Info" # Replace with a descriptive title
+          blueprint: "your-blueprint-name" # Replace with the actual blueprint name
+          properties: |
+            {
+              "open_pr_count": "${{ steps.get-pr-count.outputs.pr_count }}"
+            }

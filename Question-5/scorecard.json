@@ -23,19 +23,14 @@
       {
         "identifier": "openPRCountHigh",
         "title": "Open PR Count High",
-        "level": "Silver",
+        "level": "Gold",
         "query": {
           "combinator": "and",
           "conditions": [
             {
-              "operator": ">=",
+              "operator": "<=",
               "property": "$team",
               "value": 5
-            },
-            {
-              "operator": "<",
-              "property": "$team",
-              "value": 10
             }
           ]
         }
@@ -48,14 +43,9 @@
           "combinator": "and",
           "conditions": [
             {
-              "operator": ">=",
+              "operator": "<=",
               "property": "$team",
               "value": 10
-            },
-            {
-              "operator": "<",
-              "property": "$team",
-              "value": 15
             }
           ]
         }
@@ -65,12 +55,12 @@
         "title": "Open PR Count Low",
         "level": "Bronze",
         "query": {
-          "combinator": "and",
+          "combinator": "and", 
           "conditions": [
             {
               "operator": "<",
               "property": "$team",
-              "value": 10
+              "value": 15
             }
           ]
         }
