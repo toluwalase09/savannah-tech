@@ -3,6 +3,7 @@ name: Update Port Entity with PR Count
 on:
   schedule:
     - cron: '0 */6 * * *'
+  workflow_dispatch:
 
 jobs:
   update-port-entity:
