@@ -16,20 +16,26 @@ resources:
   - kind: issue
     selector:
       query: 'true'
-      jql: (statusCategory != Done) OR (created >= -1w) OR (updated >= -1w)
+      jql: statusCategory != Done
     port:
       entity:
         mappings:
-          identifier:
-            combinator: '"and"'  # Combine multiple rules with "and"
-            rules:
-              - operator: '"="'  # Equals operator
-                property: '"jiraIssue"'  # Use the jira_component_id property
-                value: '"service'
-          blueprint: '"jiraIssue"'  # The blueprint to map to (services blueprint)
+          identifier: .key
+          title: .fields.summary
+          blueprint: '"jiraIssue"'
           properties:
-            repository_url: '"https://github.com/toluwalase09/test-amplify"'
-            jira_issue_id: '"test-amplify"'
+            url: (.self | split("/") | .[:3] | join("/")) + "/browse/" + .key
+            status: .fields.status.name
+            issueType: .fields.issuetype.name
+            components: .fields.components
+            assignee: .fields.assignee.emailAddress
+            reporter: .fields.reporter.emailAddress
+            creator: .fields.creator.emailAddress
+            priority: .fields.priority.id
+            labels: .fields.labels
+            created: .fields.created
+            updated: .fields.updated
+            resolutionDate: .fields.resolutiondate
           relations:
             project: .fields.project.key
             parentIssue: .fields.parent.key

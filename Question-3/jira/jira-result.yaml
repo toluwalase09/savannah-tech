@@ -7,5 +7,29 @@
       "url": "https://savannah-lase.atlassian.net/projects/TOLU"
     }
   },
-  "Resource #2": "resources[2].port.entity.mappings.properties.url: jq: error: split input and separator must be strings"
+  "Resource #2": {
+    "identifier": "TOLU-4",
+    "title": "mapping",
+    "blueprint": "jiraIssue",
+    "properties": {
+      "url": "https://savannah-lase.atlassian.net/browse/TOLU-4",
+      "status": "To Do",
+      "issueType": "Story",
+      "components": [],
+      "assigneeEmail": "[REDACTED]",
+      "reporterEmail": "[REDACTED]",
+      "creatorEmail": "[REDACTED]",
+      "priority": "3",
+      "labels": [],
+      "createdDate": "2024-11-22T22:06:03.403+0100",
+      "updatedDate": "2024-11-22T22:06:22.581+0100",
+      "resolutionDate": null
+    },
+    "relations": {
+      "project": "TOLU",
+      "parentIssue": "TOLU-3",
+      "subtasks": [],
+      "services": []
+    }
+  }
 }
